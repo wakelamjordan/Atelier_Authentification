@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Si ok alors on initialise le cookie sur le poste de l'utilisateur 
 
-    function ifAuthOk($account, $userPost, $countAccount)
+    function ifAuthOk($account, $userPost)
     {
         // compteur pour vérifier si on est à la fin du tableau
         $countAccount = 0;
@@ -63,6 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
+
+    ifAuthOk($account, $userPost);
 }
 ?>
 
