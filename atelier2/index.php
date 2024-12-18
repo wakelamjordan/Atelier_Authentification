@@ -28,37 +28,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Vérification simple du username et de son password.
 
-    $lenth
 
-    foreach ($account as $user) {
-        $userAccount = [
-            "username" => $user['username'],
-            "password" => $user['password']
-        ];
-
-        $lenthAccount++;
-
-        $authOk = ifAuthOk($userAccount, $userPost);
-    }
 
     // Si ok alors on initialise le cookie sur le poste de l'utilisateur 
 
-    function ifAuthOk($userAccount, $userPost)
+    function ifAuthOk($account, $userPost, $countAccount)
     {
-        if ($userAccount['username'] === $userPost['username'] && $userAccount['password'] === $userPost['password']) {
+        // compteur pour vérifier si on est à la fin du tableau
+        $countAccount = 0;
 
-            // génération d'un token aléatoire
-            $token = bin2hex(random_bytes(16));
+        foreach ($account as $user) {
+            $countAccount++;
 
-            setcookie('authToken', $token, time() + 60, '/', '', false, true); // Le Cookie est initialisé et valable pendant 1 heure (3600 secondes) 
-            header('Location: page_admin.php'); // L'utilisateur est dirigé vers la page home.php
-            return true;
-            // exit();
-        // } else {
-        //     $error = "Nom d'utilisateur ou mot de passe incorrect.";
+            $userAccount = [
+                "username" => $user['username'],
+                "password" => $user['password']
+            ];
+
+            if ($userAccount['username'] === $userPost['username'] && $userAccount['password'] === $userPost['password']) {
+
+                // génération d'un token aléatoire
+                $token = bin2hex(random_bytes(16));
+
+                setcookie('authToken', $token, time() + 60, '/', '', false, true); // Le Cookie est initialisé et valable pendant 1 heure (3600 secondes) 
+                header('Location: page_admin.php'); // L'utilisateur est dirigé vers la page home.php
+                break;
+                // exit();
+                // } else {
+            }
+
+            // si tout les utilisateurs ont été testé sans succes
+            if (count($account) === $countAccount) {
+                return $error = "Nom d'utilisateur ou mot de passe incorrect.";
+            }
         }
-
-        if
     }
 }
 ?>
