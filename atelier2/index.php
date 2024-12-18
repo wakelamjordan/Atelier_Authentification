@@ -13,7 +13,6 @@ if (isset($_COOKIE['authToken']) && $_COOKIE['authToken'] === '12345') {
 require '../account.php';
 
 
-
 // Gérer la soumission du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -29,7 +28,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $token = cryptage($username, $password);
 
             setcookie('authToken', $token, time() + 60, '/', '', false, true); // Le Cookie est initialisé et valable pendant 1 heure (3600 secondes) 
-            header('Location: page_admin.php'); // L'utilisateur est dirigé vers la page home.php
+
+            switch($username){
+                case 'admin' :
+                    header('Location: page_admin.php'); // L'utilisateur est dirigé vers la page home.php
+                    break;
+                case 'user':
+                    header('Location: page_user.php'); // L'utilisateur est dirigé vers la page home.php
+                    break;
+
+            }
             exit();
         }
     }
