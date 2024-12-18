@@ -10,7 +10,7 @@ if (isset($_COOKIE['authToken']) && $_COOKIE['authToken'] === '12345') {
     exit();
 }
 
-require './account.php';
+require '../account.php';
 
 
 
