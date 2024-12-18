@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérification simple du username et de son password.
 
     foreach ($account as $user) {
-        var_dump($user[0], $user[1]);
+        var_dump($user['username'], $user['password']);
     }
 
     // Si ok alors on initialise le cookie sur le poste de l'utilisateur 
