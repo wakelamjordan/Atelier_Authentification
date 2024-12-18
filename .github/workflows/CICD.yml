@@ -4,12 +4,12 @@ jobs:
   Connexion:
     runs-on: ubuntu-latest
     steps:
-      # - name: Checkout repository
-      #   uses: action/checkout@v3
+      - name: Checkout repository
+        uses: action/checkout@v3
 
-      # - name: Create sensitive file
-      #   run: |
-      #     echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > /atelier1/.htpasswd
+      - name: Create sensitive file
+        run: |
+          echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > /atelier1/.htpasswd
 
       - name: Connexion SSH avec le serveur
         uses: appleboy/ssh-action@master
