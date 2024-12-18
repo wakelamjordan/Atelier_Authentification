@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // si tout les utilisateurs ont été testé sans succes
             if (count($account) === $countAccount) {
-                return $error = "Nom d'utilisateur ou mot de passe incorrect.";
+                echo "Nom d'utilisateur ou mot de passe incorrect.";
             }
         }
     }
