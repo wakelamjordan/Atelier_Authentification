@@ -2,7 +2,7 @@
 // Démarrer la session
 session_start();
 
-require './account.php';
+require '../account.php';
 
 // Vérifier si l'utilisateur est bien en possession d'un cookie valide
 // Dans le cas contraire il sera redirigé vers la page d'accueil de connexion
