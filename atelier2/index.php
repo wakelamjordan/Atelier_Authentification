@@ -48,12 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($userAccount['username'] === $userPost['username'] && $userAccount['password'] === $userPost['password']) {
 
                 // génération d'un token aléatoire
-                // $token = bin2hex(random_bytes(16));
+                $token = bin2hex(random_bytes(16));
 
-                // setcookie('authToken', $token, time() + 60, '/', '', false, true); // Le Cookie est initialisé et valable pendant 1 heure (3600 secondes) 
-                // header('Location: page_admin.php'); // L'utilisateur est dirigé vers la page home.php
-
-                echo "existe";
+                setcookie('authToken', $token, time() + 60, '/', '', false, true); // Le Cookie est initialisé et valable pendant 1 heure (3600 secondes) 
+                header('Location: page_admin.php'); // L'utilisateur est dirigé vers la page home.php
                 break;
                 // exit();
                 // } else {
