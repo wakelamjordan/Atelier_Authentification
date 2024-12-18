@@ -49,6 +49,8 @@ jobs:
           script: |
             cd $HOME/www/atelier1
             echo '${{ secrets.MY_SECRET_FILE_CONTENT }}' > .htpasswd
-            cd $HOME/www/
-            echo 'AUTH_SESSION_USERNAME=${{ secrets.AUTH_SESSION_USERNAME }}
-            AUTH_SESSION_USERNAME=${{ secrets.AUTH_SESSION_PASSWORD }}' > .env
+    
+      - name: Create .env
+        run: |
+          echo "AUTH_SESSION_USERNAME=${{ secrets.AUTH_SESSION_USERNAME }}" > .env
+          echo "AUTH_SESSION_PASSWORD=${{ secrets.AUTH_SESSION_PASSWORD }}" >> .env

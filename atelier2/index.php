@@ -1,6 +1,6 @@
 <?php
 // Démarrer une session utilisateur qui sera en mesure de pouvoir gérer les Cookies
-var_dump("getenv('AUTH_SESSION_USERNAME')");
+var_dump(getenv('AUTH_SESSION_USERNAME'));
 die;
 session_start();
 
