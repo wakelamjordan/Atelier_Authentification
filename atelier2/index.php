@@ -32,9 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: page_admin.php'); // L'utilisateur est dirigé vers la page home.php
             exit();
         }
-        echo "Nom d'utilisateur ou mot de passe incorrect.";
     }
 
+    echo "Nom d'utilisateur ou mot de passe incorrect.";
 
 
 
