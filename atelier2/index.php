@@ -10,22 +10,12 @@ if (isset($_COOKIE['authToken']) && $_COOKIE['authToken'] === '12345') {
     exit();
 }
 
-// création d'un array avec plusieurs utilisateurs
-$account = [
-    ["username" => "admin", "password" => "12345"],
-    ["username" => "user", "password" => "utilisateur"]
-];
-
 // Gérer la soumission du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     // Vérification simple du username et de son password.
-
-    foreach ($account as $user) {
-        var_dump($user[0], $user[1]);
-    }
 
     // Si ok alors on initialise le cookie sur le poste de l'utilisateur 
 
