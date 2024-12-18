@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Si ok alors on initialise le cookie sur le poste de l'utilisateur 
 
     foreach ($account as $user) {
-        if ($user['username'] === $username && $user['username'] === $password) {
+        if ($user['username'] === $username && $user['password'] === $password) {
             $token = cryptage($username, $password);
 
             setcookie('authToken', $token, time() + 60, '/', '', false, true); // Le Cookie est initialisé et valable pendant 1 heure (3600 secondes) 
