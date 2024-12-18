@@ -1,4 +1,4 @@
 AuthName "Accès protégé"
 AuthType Basic
-AuthUserFile /home/jordanwakelam/www/atelier1/.htpasswd
+AuthUserFile /home/jordanwakelam/www/.htpasswd
 Require valid-user
