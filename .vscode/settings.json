@@ -4,8 +4,8 @@
             "editor.selectionBackground": "#6969f094",
             "editor.selectionHighlightBackground": "#6969f094"
         },
-        "activityBar.background": "#083608",
-        "titleBar.activeBackground": "#0B4B0C",
-        "titleBar.activeForeground": "#F3FDF3"
+        "activityBar.background": "#28108B",
+        "titleBar.activeBackground": "#3716C3",
+        "titleBar.activeForeground": "#FCFCFF"
     }
 }
