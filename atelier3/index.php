@@ -2,20 +2,41 @@
 // Démarre la session
 session_start();
 
+// permet un ajout de compte et page facilement, en quelque sorte similaire à ce que l'on pourrai obtenir à partir d'une bdd
+$account = [
+    [
+        'username' => 'admin',
+        'password' => 'secret',
+        'page' => 'page_admin.php'
+    ],
+    [
+        'username' => 'user',
+        'password' => 'utilisateur',
+        'page' => 'page_user.php'
+    ]
+];
+
 // Vérifier si l'utilisateur est déjà connecté et si on a une valeur username pour effectuer un redirection
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && $_SESSION['username']) {
     // sur la valeur de username on effectue le switch et une redirection vers la page correspondante si aucune valeur prévu on reste sur la page et stope le script, le html est alors simplement affiché par le navigateur
-    switch ($_SESSION['username']) {
-        case 'admin':
-            header('Location: page_admin.php'); // Si l'utilisateur s'est déjà connecté alors il sera automatiquement redirigé vers la page protected.php
+
+    foreach ($account as $user) {
+        if ($user['username'] === $_SESSION['username']) {
+            header('Location: ' . $user['page']);
             break;
-        case 'user':
-            header('Location: page_user.php'); // Si l'utilisateur s'est déjà connecté alors il sera automatiquement redirigé vers la page protected.php
-            break;
-        default:
-            exit;
-            break;
+        }
     }
+    // switch ($_SESSION['username']) {
+    //     case 'admin':
+    //         header('Location: page_admin.php'); // Si l'utilisateur s'est déjà connecté alors il sera automatiquement redirigé vers la page protected.php
+    //         break;
+    //     case 'user':
+    //         header('Location: page_user.php'); // Si l'utilisateur s'est déjà connecté alors il sera automatiquement redirigé vers la page protected.php
+    //         break;
+    //     default:
+    //         exit;
+    //         break;
+    // }
 }
 
 // Gérer le formulaire de connexion
@@ -27,22 +48,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // switch sur la valeur de username puis vérification de password simple avec attribution des valeurs de session nécessaires aux prochaines vérif sur les différentes pages
 
-    switch ($username) {
-        case 'admin':
-            if ($password === 'secret') {
-                $_SESSION['loggedin'] = true;
-                $_SESSION['username'] = $username;
-                header('Location: page_admin.php');
-            };
+    foreach ($account as $user) {
+        if ($user['username'] === $username && $user['password'] === $password) {
+            $_SESSION['loggedin'] = true;
+            $_SESSION['username'] = $username;
+            header('Location: ' . $user['page']);
             break;
-        case 'user':
-            if ($password === 'utilisateur') {
-                $_SESSION['loggedin'] = true;
-                $_SESSION['username'] = $username;
-                header('Location: page_user.php');
-            };
-            break;
+        }
     }
+    // switch ($username) {
+    //     case 'admin':
+    //         if ($password === 'secret') {
+    //             $_SESSION['loggedin'] = true;
+    //             $_SESSION['username'] = $username;
+    //             header('Location: page_admin.php');
+    //         };
+    //         break;
+    //     case 'user':
+    //         if ($password === 'utilisateur') {
+    //             $_SESSION['loggedin'] = true;
+    //             $_SESSION['username'] = $username;
+    //             header('Location: page_user.php');
+    //         };
+    //         break;
+    // }
     // echo plus friendly pour savoir que ce n'est pas bon, dans lequel on arrive uniquement si aucune autres conditions n'est valide avant
     echo "Nom d'utilisateur ou mot de passe incorrect.";
 }
