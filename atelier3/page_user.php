@@ -3,7 +3,7 @@
 session_start();
 
 // Vérifier si l'utilisateur s'est bienconnecté
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true && $_SESSION['username'] !== 'admin') {
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true && $_SESSION['username'] !== 'user') {
     header('Location: index.php'); // Dans le cas contraire, l'utilisateur sera redirigé vers la page de connexion
     exit();
 }
@@ -19,7 +19,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true && $_SESSION
 </head>
 
 <body>
-    <h1>Bienvenue sur la page administrateur de l'atelier 3</h1>
+    <h1>Bienvenue sur la page utilisateur de l'atelier 3</h1>
     <p>Vous êtes connecté en tant que : <?php echo htmlspecialchars($_SESSION['username']); ?></p>
     <a href="logout.php">Se déconnecter</a>
 </body>
