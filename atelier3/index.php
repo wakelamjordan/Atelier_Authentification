@@ -2,8 +2,9 @@
 // Démarre la session
 session_start();
 
-// Vérifier si l'utilisateur est déjà connecté
+// Vérifier si l'utilisateur est déjà connecté et si on a une valeur username pour effectuer un redirection
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && $_SESSION['username']) {
+    // sur la valeur de username on effectue le switch et une redirection vers la page correspondante si aucune valeur prévu on reste sur la page et stope le script, le html est alors simplement affiché par le navigateur
     switch ($_SESSION['username']) {
         case 'admin':
             header('Location: page_admin.php'); // Si l'utilisateur s'est déjà connecté alors il sera automatiquement redirigé vers la page protected.php
@@ -18,11 +19,13 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && $_SESSION[
 }
 
 // Gérer le formulaire de connexion
+// si avec la requete effectué au serveur, que l'on vérifie avec la superglobale $_SERVER et que la méthode est POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // on prend dans les variable global post les valeurs des clé username et password
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Vérification simple des identifiants (à améliorer avec une base de données)
+    // switch sur la valeur de username puis vérification de password simple avec attribution des valeurs de session nécessaires aux prochaines vérif sur les différentes pages
 
     switch ($username) {
         case 'admin':
@@ -40,18 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             };
             break;
     }
+    // echo plus friendly pour savoir que ce n'est pas bon, dans lequel on arrive uniquement si aucune autres conditions n'est valide avant
     echo "Nom d'utilisateur ou mot de passe incorrect.";
-    // if ($username === 'admin' && $password === 'secret') {
-    //     // Stocker les informations utilisateur dans la session
-    //     $_SESSION['loggedin'] = true;
-    //     $_SESSION['username'] = $username;
-
-    //     // Rediriger vers la page protégée
-    //     header('Location: page_admin.php');
-    //     exit();
-    // } else {
-
-    // }
 }
 ?>
 
