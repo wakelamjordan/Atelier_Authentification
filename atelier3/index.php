@@ -28,6 +28,12 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && $_SESSION[
     }
 }
 
+if (isset($_SESSION['count_visite'])) {
+    $_SESSION['count_visite']++;
+} else {
+    $_SESSION['count_visite'] = 1;
+}
+
 
 
 // Gérer le formulaire de connexion
@@ -43,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($user['username'] === $username && $user['password'] === $password) {
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $username;
+            $_SESSION['count_visite'] = 0;
             header('Location: ' . $user['page']);
             break;
         }
@@ -62,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <h1>Atelier authentification par Session</h1>
+    <h2>Vous avez visité la page <?= htmlspecialchars($_SESSION['count_visite']); ?></h2>
     <h3>La page <a href="page_admin.php">page_admin.php</a> de cet atelier 3 est inaccéssible tant que vous ne vous serez pas connecté avec le login 'admin' et mot de passe 'secret'</h3>
     <form method="POST" action="">
         <label for="username">Nom d'utilisateur :</label>
