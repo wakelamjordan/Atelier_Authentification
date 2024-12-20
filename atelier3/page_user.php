@@ -17,6 +17,11 @@ if (isset($_SESSION['count_visite'])) {
     $_SESSION['count_visite'] = 1;
 }
 
+echo "<pre>";
+echo ("variable global _SESSION ");
+print_r($_SESSION);
+echo "</pre>";
+
 ?>
 
 <!DOCTYPE html>

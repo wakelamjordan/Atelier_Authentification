@@ -34,7 +34,10 @@ if (isset($_SESSION['count_visite'])) {
     $_SESSION['count_visite'] = 1;
 }
 
-
+echo "<pre>";
+echo ("variable global _SESSION ");
+print_r($_SESSION);
+echo "</pre>";
 
 // Gérer le formulaire de connexion
 // si avec la requete effectué au serveur, que l'on vérifie avec la superglobale $_SERVER et que la méthode est POST
