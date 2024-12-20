@@ -10,6 +10,13 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true || $_SESSION
     header('Location: index.php'); // Dans le cas contraire, l'utilisateur sera redirigé vers la page de connexion
     exit();
 }
+
+
+if (isset($_SESSION['count_visite'])) {
+    $_SESSION['count_visite']++;
+} else {
+    $_SESSION['count_visite'] = 1;
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +30,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true || $_SESSION
 
 <body>
     <h1>Bienvenue sur la page administrateur de l'atelier 3</h1>
+    <h2>Vous avez visité la page <?= htmlspecialchars($_SESSION['count_visite']); ?></h2>
     <p>Vous êtes connecté en tant que : <?php echo htmlspecialchars($_SESSION['username']); ?></p>
     <a href="logout.php">Se déconnecter</a>
 </body>

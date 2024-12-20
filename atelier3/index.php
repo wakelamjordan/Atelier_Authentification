@@ -26,18 +26,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && $_SESSION[
             break;
         }
     }
-    // switch ($_SESSION['username']) {
-    //     case 'admin':
-    //         header('Location: page_admin.php'); // Si l'utilisateur s'est déjà connecté alors il sera automatiquement redirigé vers la page protected.php
-    //         break;
-    //     case 'user':
-    //         header('Location: page_user.php'); // Si l'utilisateur s'est déjà connecté alors il sera automatiquement redirigé vers la page protected.php
-    //         break;
-    //     default:
-    //         exit;
-    //         break;
-    // }
 }
+
+
 
 // Gérer le formulaire de connexion
 // si avec la requete effectué au serveur, que l'on vérifie avec la superglobale $_SERVER et que la méthode est POST
@@ -56,22 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
         }
     }
-    // switch ($username) {
-    //     case 'admin':
-    //         if ($password === 'secret') {
-    //             $_SESSION['loggedin'] = true;
-    //             $_SESSION['username'] = $username;
-    //             header('Location: page_admin.php');
-    //         };
-    //         break;
-    //     case 'user':
-    //         if ($password === 'utilisateur') {
-    //             $_SESSION['loggedin'] = true;
-    //             $_SESSION['username'] = $username;
-    //             header('Location: page_user.php');
-    //         };
-    //         break;
-    // }
     // echo plus friendly pour savoir que ce n'est pas bon, dans lequel on arrive uniquement si aucune autres conditions n'est valide avant
     echo "Nom d'utilisateur ou mot de passe incorrect.";
 }
