@@ -3,6 +3,8 @@
 $valid_username = 'admin';
 $valid_password = 'secret';
 
+var_dump($_SERVER);
+
 // Vérifier si l'utilisateur a envoyé des identifiants
 if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
     // Envoyer un header HTTP pour demander les informations
