@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             };
             break;
     }
-    $error = "Nom d'utilisateur ou mot de passe incorrect.";
+    echo "Nom d'utilisateur ou mot de passe incorrect.";
     // if ($username === 'admin' && $password === 'secret') {
     //     // Stocker les informations utilisateur dans la session
     //     $_SESSION['loggedin'] = true;
